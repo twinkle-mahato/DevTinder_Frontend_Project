@@ -1,2 +1,3 @@
 - Created a vite + React application
 - Remove unecessary code
+- Install Tailwind Css

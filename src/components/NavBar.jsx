@@ -1,10 +1,15 @@
 import React from "react";
+import { Link } from "react-router";
 
 const NavBar = () => {
   return (
-    <div className="navbar bg-base-300 shadow-sm">
+    <div className="navbar  bg-black/20 backdrop-blur-md px-6 shadow-lg sticky top-0 z-50 border-b border-white/10">
       <div className="flex-1">
-        <a className="btn btn-ghost text-xl">Dev Tinder 🚀</a>
+        <Link to="/" className="flex items-center gap-2 text-2xl font-bold">
+          <span className="text-purple-400">Dev</span>
+          <span className="text-white">Tinder</span>
+          <span>🚀</span>
+        </Link>
       </div>
       <div className="flex gap-2">
         <div className="dropdown dropdown-end mx-5">

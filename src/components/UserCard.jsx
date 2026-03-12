@@ -21,7 +21,7 @@ const UserCard = ({ userFeed, isPreview = false }) => {
       );
       dispatch(removeUserFromFeed(userId));
     } catch (err) {
-      setError(err?.response?.data || "Something went wrong!");
+      setError(err.message || "Something went wrong!");
     }
   };
 

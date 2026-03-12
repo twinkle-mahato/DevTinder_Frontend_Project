@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { BASE_URL } from "../utils/constants";
 import { addFeed } from "../utils/feedSlice";
 import { useDispatch, useSelector } from "react-redux";
@@ -11,17 +11,19 @@ const Feed = () => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
 
+  const hasFetched = useRef(false);
+
   const getFeed = async () => {
-    if (feed) return;
+    if (feed || hasFetched.current) return;
+
+    hasFetched.current = true;
     try {
       const res = await axios.get(BASE_URL + "/user/feed", {
         withCredentials: true,
       });
       dispatch(addFeed(res?.data?.data));
     } catch (err) {
-      if (err.status === 400) {
-        setError(err.message);
-      }
+      setError(err.message);
       console.log(err);
     } finally {
       setLoading(false);
@@ -50,7 +52,6 @@ const Feed = () => {
 
   if (!feed) return;
 
-  // No users state ✅ directly added here
   if (feed.length <= 0)
     return (
       <div className="flex justify-center mt-24">

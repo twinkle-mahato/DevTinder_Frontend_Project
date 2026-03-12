@@ -23,7 +23,7 @@ const Body = () => {
       dispatch(addUser(res.data));
     } catch (err) {
       //if user is unauthorised navigate to login page
-      if (err.res?.status === 401 ) {
+      if (err.status === 401 ) {
         navigate("/login");
       }
       console.log(err.message);

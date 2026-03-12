@@ -13,7 +13,13 @@ const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const clearFields = () => {
+    setEmailId("");
+    setPassword("");
+  };
+
   const handleLogin = async () => {
+    setError("");
     try {
       const res = await axios.post(
         BASE_URL + "/login",
@@ -28,6 +34,7 @@ const Login = () => {
       return navigate("/");
     } catch (err) {
       setError(err?.response?.data || "Something went wrong");
+      clearFields();
     }
   };
 
@@ -54,6 +61,7 @@ const Login = () => {
                 className="input w-full max-w-xs bg-white/5 border border-white/15 focus:outline-none focus:border-purple-400"
                 onChange={(e) => {
                   setEmailId(e.target.value);
+                  setError("");
                 }}
               />
             </label>
@@ -72,6 +80,7 @@ const Login = () => {
                 className="input w-full max-w-xs bg-white/5 border border-white/15 focus:outline-none focus:border-purple-400"
                 onChange={(e) => {
                   setPassword(e.target.value);
+                  setError("");
                 }}
               />
             </label>

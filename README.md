@@ -25,6 +25,9 @@ Create BrowserRouter > Routes > Route = /Body > RouteChildren
 - You should not be access other routes without login
 - If token is not present, redirect user to login page
 - Logout feature
+- Get the feed and the feed into the store
+- Build the UserCard on the feed
+- Edit Profile Feature
 
 Body
 NavBar

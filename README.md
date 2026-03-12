@@ -2,3 +2,4 @@
 - Remove unecessary code
 - Install Tailwind Css
 - install daisy ui
+- Add Navbar component to App.jsx

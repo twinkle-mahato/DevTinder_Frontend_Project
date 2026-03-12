@@ -28,6 +28,11 @@ Create BrowserRouter > Routes > Route = /Body > RouteChildren
 - Get the feed and the feed into the store
 - Build the UserCard on the feed
 - Edit Profile Feature
+- Show Toast Message On Save of Profile
+- New page - See all my connections
+- New page - See all my Connections Requests
+- Feature - Accept/Reject Connection Request
+- Send/Ignore the user card from the feed
 
 Body
 NavBar

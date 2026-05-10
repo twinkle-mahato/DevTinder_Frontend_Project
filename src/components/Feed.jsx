@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { BASE_URL } from "../utils/constants";
 import { addFeed } from "../utils/feedSlice";
 import { useDispatch, useSelector } from "react-redux";
@@ -7,32 +7,32 @@ import UserCard from "./UserCard";
 
 const Feed = () => {
   const feed = useSelector((store) => store.feed);
+  const user = useSelector((store) => store.user);
   const dispatch = useDispatch();
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  const hasFetched = useRef(false);
-
-  const getFeed = async () => {
-    if (feed || hasFetched.current) return;
-
-    hasFetched.current = true;
-    try {
-      const res = await axios.get(BASE_URL + "/user/feed", {
-        withCredentials: true,
-      });
-      dispatch(addFeed(res?.data?.data));
-    } catch (err) {
-      setError(err.message);
-      console.log(err);
-    } finally {
-      setLoading(false);
-    }
-  };
-
   useEffect(() => {
+    const getFeed = async () => {
+      if (!user) return;
+      
+      try {
+        setLoading(true);
+        const res = await axios.get(BASE_URL + "/user/feed", {
+          withCredentials: true,
+        });
+        dispatch(addFeed(res?.data?.data));
+        setError(null);
+      } catch (err) {
+        setError(err.message);
+        console.log(err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
     getFeed();
-  }, []);
+  }, [user, dispatch]);
 
   if (loading)
     return (

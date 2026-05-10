@@ -79,7 +79,7 @@ const UserCard = ({ userFeed, isPreview = false }) => {
       {error && (
         <div
           role="alert"
-          className="alert alert-error bg-error/10 border border-error/20 text-error w-96 py-2"
+          className="alert alert-error bg-error/10 border border-error/20 text-error w-90 mt-2 py-2"
         >
           <span className="text-sm">⚠️ {error}</span>
         </div>
